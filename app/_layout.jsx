@@ -1,5 +1,7 @@
 import {StyleSheet, Text, View, Image} from 'react-native'
 import {Drawer} from 'expo-router/drawer'
+import Ionicons from '@expo/vector-icons/Ionicons';
+import Foundation from '@expo/vector-icons/Foundation';
 
 export default function Layout(){
     return(
@@ -15,7 +17,8 @@ export default function Layout(){
                 name = "index"
                 options={{
                     drawerLabel: 'Home',
-                    title: 'Home'
+                    title: 'Home',
+                    drawerIcon: ({color, size}) => <Ionicons name='home' size={size} color={color}/>
                 }}
             />
 
@@ -23,7 +26,8 @@ export default function Layout(){
                 name="search"
                 options={{
                     drawerLabel: 'Search',
-                    title: 'Search'
+                    title: 'Search',
+                    drawerIcon: ({color, size}) => <Ionicons name='search' size={size} color={color}/>
                 }}
             />
 
@@ -31,7 +35,8 @@ export default function Layout(){
                 name="insights"
                 options={{
                     drawerLabel: 'Insights',
-                    title: 'Insights'
+                    title: 'Insights',
+                    drawerIcon: ({color, size}) => <Foundation name='graph-pie' size={size} color={color}/>
                 }}
             />
         </Drawer>
