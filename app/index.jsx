@@ -1,5 +1,7 @@
-import {StyleSheet, Text, View, Image} from 'react-native'
+import {StyleSheet, Text, View, Image, Button, Alert, Platform, ScrollView} from 'react-native'
 import {SafeAreaView} from 'react-native-safe-area-context'
+import RecentExpenseCard from '../components/RecentExpenseCard'
+
 
 import Logo from '../assets/img/funny.png'
 import React from 'react'
@@ -7,16 +9,22 @@ import React from 'react'
 const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
+      <ScrollView contentContainerStyle={styles.content}>
+        <Text style={styles.title}> This is the Home Page</Text>
+        <Image style={styles.img} source={Logo}/>
 
-      <Text style={styles.title}> This is the Home Page</Text>
-      <Image style={styles.img} source={Logo}/>
+        <Text style={{marginTop: 10, marginBottom: 30}}> Reading List App</Text>
 
-      <Text style={{marginTop: 10, marginBottom: 30}}> Reading List App</Text>
-
-      <View style={styles.card}> 
-        <Text> Hello This is a card</Text>
-      </View>
-
+        <RecentExpenseCard></RecentExpenseCard>
+        <RecentExpenseCard></RecentExpenseCard>
+        <RecentExpenseCard></RecentExpenseCard>
+        <RecentExpenseCard></RecentExpenseCard>
+        
+        <RecentExpenseCard></RecentExpenseCard>
+        <RecentExpenseCard></RecentExpenseCard>
+        <RecentExpenseCard></RecentExpenseCard>
+        <RecentExpenseCard></RecentExpenseCard>
+      </ScrollView>
     </SafeAreaView>
   )
 }
@@ -26,8 +34,10 @@ export default Home
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  content:{
     alignItems: 'center',
-    justifyContent: 'center',
+    paddingBottom: 20,
   },
   title: {
     fontWeight: 'bold',
@@ -42,7 +52,7 @@ const styles = StyleSheet.create({
   img: {
     resizeMode: 'contain',
     marginVertical: '20',
-    height: '50%',
-    width: '50%'
+    height: '200',
+    width: '200'
   }
 })

@@ -1,19 +1,20 @@
-import {StyleSheet, Text, View, Image} from 'react-native'
+import {StyleSheet, Text, View, Image, ScrollView} from 'react-native'
 import {Drawer} from 'expo-router/drawer'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Foundation from '@expo/vector-icons/Foundation';
 
 export default function Layout(){
     return(
+        
         <Drawer
             screenOptions={{
                 headerStyle: {backgroundColor: '#ffffff'}, // Influences the header color in general no text etc just the background
                 headerTintColor: "#8b5cf6", // Will Directily influence the header text color and hamburger color
                 drawerStyle: {backgroundColor: "#ffffff"}, // Will influence the background color of the whole drawer
                 drawerActiveTintColor: "#8b5cf6", // Influences the color of the current tab the app is in. 
-                drawerInactiveBackgroundColor: "#64748b"
+                drawerInactiveBackgroundColor: "#ffffff"
             }}>
-            <Drawer.Screen
+            <Drawer.Screen // Used to specify the
                 name = "index"
                 options={{
                     drawerLabel: 'Home',
