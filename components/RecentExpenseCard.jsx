@@ -20,16 +20,17 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-
-        width: '95%',
+        width: '100%',
         alignSelf: 'center',
-
         padding: 12,
-
         marginBottom: 10,
-    
         borderRadius: 10,
-        backgroundColor: '#BBBB',
+        backgroundColor: '#fff',
+        shadowColor: '#000',
+        shadowOffset: {width: 4, height: 4},
+        shadowOpacity: 0.1,
+        shadowRadius: 6,
+        elevation: 4,
     },
     vertContainerL: {
         justifyContent: 'flex-start',

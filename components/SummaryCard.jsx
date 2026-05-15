@@ -51,10 +51,14 @@ const styles = StyleSheet.create({
     container: {
         alignSelf: 'center',
         width: '80%',
-        backgroundColor: '#fff',
         padding: 20,
         borderRadius: 10,
-        boxShadow: '4px 4px rgba(0,0,0,0.1)',
+        backgroundColor: '#fff',
+        shadowColor: '#000',
+        shadowOffset: {width: 4, height: 4},
+        shadowOpacity: 0.1,
+        shadowRadius: 6,
+        elevation: 4,
     },
     stats:{
         flexDirection: 'row',
