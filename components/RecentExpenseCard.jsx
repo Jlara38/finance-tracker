@@ -1,3 +1,4 @@
+/* This will be the section that focuses on importing stuff from Expo, React, and React Native */
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity} from 'react-native'
 

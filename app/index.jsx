@@ -1,55 +1,21 @@
+
+/* This will be the section that focuses on importing stuff from Expo, React, and React Native */
+import React from 'react'
 import  {useState, useEffect} from 'react'
 import {StyleSheet, Text, View, Image, Alert, Platform, ScrollView, TouchableOpacity} from 'react-native'
+import { verticalScale } from 'react-native-size-matters';
 import {SafeAreaView} from 'react-native-safe-area-context'
-import * as SQLite from 'expo-sqlite';
 
+/* This will be the section that focuses on importing stuff from the already made components */
 import SummaryCard from '../components/SummaryCard'
 import RecentExpenseCard from '../components/RecentExpenseCard'
 import Titles from '../components/Titles'
+
+/* This will be the section that focuses on importing stuff that are images,videos, icons, etc. (Stuff that isnt components). */
 import AntDesign from '@expo/vector-icons/AntDesign';
 
-import Logo from '../assets/img/funny.png'
-import React from 'react'
-import { verticalScale } from 'react-native-size-matters';
-
-// This will open our database that will enable us to store data.
-const db = SQLite.openDatabaseSync('expenses.db');
-
 const Home = () => {
-
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    db.execSync(
-      `CREATE TABLE IF NOT EXISTS expenses (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        type TEXT,
-        amount INTEGER NOT NULL,
-        description TEXT,
-        category TEXT,
-        date TEXT
-      );`
-    )
-
-    // Only insert if table is empty
-    const result = db.getFirstSync('SELECT COUNT(*) as count FROM expenses')
-    if (result.count === 0) {
-      db.execSync(
-        `INSERT INTO expenses (type, amount, description, category, date) VALUES
-          ('income', 3000, 'Monthly salary', 'Salary', '2024-01-01'),
-          ('expense', 50, 'Grocery run', 'Food', '2024-01-02'),
-          ('expense', 120, 'Electric bill', 'Utilities', '2024-01-03'),
-          ('income', 500, 'Freelance project', 'Side income', '2024-01-04'),
-          ('expense', 200, 'New shoes', 'Shopping', '2024-01-05');`
-      )
-    }
-
-    // Add this to confirm data is there
-    const expenses = db.getAllSync('SELECT * FROM expenses')
-    console.log(expenses)
-
-    setIsLoading(false)
-  }, [])
+  // const [isLoading, setIsLoading] = useState(true);
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -59,6 +25,8 @@ const Home = () => {
         <Titles title={'Recent Transactions'}></Titles>
 
         <ScrollView style={styles.scrollViewStyle}>
+          TODO: Create the list dynamicaly for the Recent expense cards.
+          TODO: Make sure you can pass props into them that way the infomation can be filled in with the database info.
           <RecentExpenseCard></RecentExpenseCard>
           <RecentExpenseCard></RecentExpenseCard>
           <RecentExpenseCard></RecentExpenseCard>
@@ -92,35 +60,34 @@ const Home = () => {
 export default Home
 
 const styles = StyleSheet.create({
+  // The safeArea is just meant to be the separation between the content and the top of the screen.
   safeArea:{
     flex: 1,
   },
+
+  // The container is just where the actual content is going to be in. 
   container: {
     flex: 1,
     paddingHorizontal: 5,
     marginTop: 6
   },
+  
+  // The content style is simply specifying how the actual meat of the app is gonna be 
+  // laid out and what kind of spacing is desired for the look of the app. 
   content:{
     alignItems: 'center',
     paddingBottom: 20,
   },
-  title: {
-    fontWeight: 'bold',
-    fontSize: 18,
-  },
-  card: {
-    backgroundColor: '#eee',
-    padding: 20,
-    borderRadius: 5,
-    boxShadow: '4px 4px rgba(0,0,0,0.1)',
-  },
-  img: {
-    resizeMode: 'contain',
-    marginVertical: '20',
-    height: '200',
-    width: '200'
-  },
+  // 
+  // card: {
+  //   backgroundColor: '#eee',
+  //   padding: 20,
+  //   borderRadius: 5,
+  //   boxShadow: '4px 4px rgba(0,0,0,0.1)',
+  // },
 
+  // ScrollViewStyle is specifies how much space I want the scroll view take up in concern to the screen. 
+  // Specifies behavior and spacing.
   scrollViewStyle: {
     flex: 1,
     alignSelf: 'center',
@@ -130,6 +97,8 @@ const styles = StyleSheet.create({
     overflow: 'scroll',
   },
 
+  // floatingButton style is simple there to specify size, position, and styling related to the button that will be used 
+  // for the sake of adding more transactions/deposits. 
   floatingButton: {
     height: 50,
     width: 50,
