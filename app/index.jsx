@@ -17,10 +17,8 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 
 const Home = () => {
   const [modalVisible, setModalVisible] = useState(false)
-  // const [isLoading, setIsLoading] = useState(true)
+
   const addExpense = () => {
-    // Add modal to be able to take input for the next expense that needs to be added.
-    console.log('Button clicked!');
     setModalVisible(true)
   }
 
