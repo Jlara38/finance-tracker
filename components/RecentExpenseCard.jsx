@@ -2,16 +2,16 @@
 import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity} from 'react-native'
 
-export default function RecentExpenseCard(){
+export default function RecentExpenseCard({type, desc, price, date}){
     return(
         <TouchableOpacity style={styles.container}>
             <View style={styles.vertContainerL}>
-                <Text>Type</Text>
-                <Text>Description</Text>
+                <Text style={styles.maintext}>{type}</Text>
+                <Text style={styles.subtext}>{desc}</Text>
             </View>
-            <View style={styles.vertContainer}>
-                <Text>Price</Text>
-                <Text>Date</Text>
+            <View style={styles.vertContainerR}>
+                <Text style={styles.maintext}>{price}</Text>
+                <Text style={styles.subtext}>{date}</Text>
             </View>
         </TouchableOpacity>
     )
@@ -38,5 +38,12 @@ const styles = StyleSheet.create({
     },
     vertContainerR: {
         justifyContent: 'flex-end',
-    }
+    },
+    maintext: {
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+    subtext: {
+        fontSize: 10,
+    },
 })

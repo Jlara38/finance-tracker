@@ -1,8 +1,8 @@
 
 /* This will be the section that focuses on importing stuff from Expo, React, and React Native */
 import React from 'react'
-import  {useState, useEffect} from 'react'
-import {StyleSheet, Text, View, Image, Alert, Platform, ScrollView, TouchableOpacity} from 'react-native'
+import {useState, useEffect} from 'react'
+import {StyleSheet, Text, View, ScrollView, TouchableOpacity, Modal} from 'react-native'
 import { verticalScale } from 'react-native-size-matters';
 import {SafeAreaView} from 'react-native-safe-area-context'
 
@@ -10,24 +10,35 @@ import {SafeAreaView} from 'react-native-safe-area-context'
 import SummaryCard from '../components/SummaryCard'
 import RecentExpenseCard from '../components/RecentExpenseCard'
 import Titles from '../components/Titles'
+import TransactionModal from '../modals/TransactionModal'
 
 /* This will be the section that focuses on importing stuff that are images,videos, icons, etc. (Stuff that isnt components). */
 import AntDesign from '@expo/vector-icons/AntDesign';
 
 const Home = () => {
-  // const [isLoading, setIsLoading] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false)
+  // const [isLoading, setIsLoading] = useState(true)
+  const addExpense = () => {
+    // Add modal to be able to take input for the next expense that needs to be added.
+    console.log('Button clicked!');
+    setModalVisible(true)
+  }
 
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
+
+        <TransactionModal modalVisible={modalVisible} setModalVisible={setModalVisible}></TransactionModal>
+
+
         <SummaryCard/>
         
         <Titles title={'Recent Transactions'}></Titles>
 
         <ScrollView style={styles.scrollViewStyle}>
-          TODO: Create the list dynamicaly for the Recent expense cards.
-          TODO: Make sure you can pass props into them that way the infomation can be filled in with the database info.
-          <RecentExpenseCard></RecentExpenseCard>
+          {/* TODO: Create the list dynamicaly for the Recent expense cards.
+          TODO: Make sure you can pass props into them that way the infomation can be filled in with the database info. */}
+          <RecentExpenseCard type={'Utilities'} price={'200'} desc={'Paid gas bill'} date={'20 May'}></RecentExpenseCard>
           <RecentExpenseCard></RecentExpenseCard>
           <RecentExpenseCard></RecentExpenseCard>
           <RecentExpenseCard></RecentExpenseCard>
@@ -46,7 +57,7 @@ const Home = () => {
           <RecentExpenseCard></RecentExpenseCard>
         </ScrollView>
 
-        <TouchableOpacity style={styles.floatingButton}>
+        <TouchableOpacity style={styles.floatingButton} onPress={addExpense}>
           <AntDesign name="plus" size={24} color="black" />
         </TouchableOpacity>
       </View>
@@ -114,5 +125,21 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.3,
     shadowRadius: 3,
-  }
+  },
+
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.5)'
+  },
+    
+  modalContent: {
+    width: '100%',
+    height: '90%',
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    padding: 20,
+    gap: 10,
+  },
 })
