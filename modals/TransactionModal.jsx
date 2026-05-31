@@ -10,6 +10,8 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 
 export default function TransactionModal  ({modalVisible, setModalVisible}){
   const [openDropdown, setOpenDropdown] = useState(null); // Stores the name of the open dropdown
+  const [selectedType, setSelectedType] = useState(null); // Tracks selected value from the dropdown
+
   const types = [{value: 'Credit'}, {value: 'Debit'}, {value: 'Cash'}];
 
   return(
@@ -36,7 +38,12 @@ export default function TransactionModal  ({modalVisible, setModalVisible}){
                     label='Type' 
                     data={types} 
                     isOpen={openDropdown === 'type'}
-                    onToggle={() => setOpenDropdown(openDropdown === 'type' ? null : 'type')}    
+                    onToggle={() => setOpenDropdown(openDropdown === 'type' ? null : 'type')}
+                    selected = {selectedType} // [Passes down the selected value down]
+                    onSelect={(val) => {
+                        setSelectedType(val) // saves the selected option
+                        setOpenDropdown(null) // closes the dropdown
+                    }}    
                 />
             </View>
         </View>

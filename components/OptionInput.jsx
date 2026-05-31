@@ -5,11 +5,11 @@ import {StyleSheet, View, Text, TouchableOpacity, FlatList} from 'react-native'
 /* This will be the section that focuses on importing stuff that are images,videos, icons, etc. (Stuff that isnt components). */
 import AntDesign from '@expo/vector-icons/AntDesign';
 
-export default function TxtInput({label, data, isOpen, onToggle}) {
+export default function TxtInput({label, data, isOpen, onToggle, selected, onSelect}) {
   return (
     <View style={[styles.container, isOpen && {zIndex: 999}]}>
       <TouchableOpacity style={styles.dropdown} activeOpacity={0.8} onPress={onToggle}>
-        <Text style={styles.label}>{label}</Text>
+        <Text style={styles.label}>{selected ?? label}</Text>
         <AntDesign name={isOpen ? "caret-up" : "caret-down"} />
       </TouchableOpacity>
 
@@ -20,7 +20,7 @@ export default function TxtInput({label, data, isOpen, onToggle}) {
               key={item.value}
               activeOpacity={0.8}
               style={styles.optionItem}
-              onPress={onToggle}
+              onPress={() => onSelect(item.value)}
             >
               <Text>{item.value}</Text>
             </TouchableOpacity>
@@ -49,11 +49,18 @@ const styles = StyleSheet.create({
     },
     options:{
         position: 'absolute',
-        top: 62,
-        backgroundColor: '#979090',
+        top: 63,
+        backgroundColor: '#fff',
         width: '90%',
         padding: 10,
+        borderWidth: 1,
         borderRadius: 10,
+        zIndex: 999,
+        elevation: 5,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
     },
     dropdown: {
         flexDirection: 'row',
