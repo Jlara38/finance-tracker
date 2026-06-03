@@ -7,14 +7,20 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 
 export default function TxtInput({label, data, isOpen, onToggle, selected, onSelect}) {
   return (
-    <View style={[styles.container, isOpen && {zIndex: 999}]}>
+    // This is the container that will bind the drop down menu in a rectanglular area.
+    <View style={[styles.container, isOpen && {zIndex: 999}]}> 
+      {/* This touchable opacity allows the user to interact with the dropdown menu.  */}
       <TouchableOpacity style={styles.dropdown} activeOpacity={0.8} onPress={onToggle}>
         <Text style={styles.label}>{selected ?? label}</Text>
         <AntDesign name={isOpen ? "caret-up" : "caret-down"} />
       </TouchableOpacity>
 
+      {/* This section of the code is in-charge of the behaivior for that the button will take once you click on the 
+          drop down menu button. */}
       {isOpen && (
         <View style={styles.options}>
+          {/* This particular part of the code will take the data set that was given and map it out dynamically. 
+              It will also use the selected and onSelect props in order to close and save the selected item that was used.*/}
           {data.map((item) => (
             <TouchableOpacity
               key={item.value}
@@ -33,7 +39,7 @@ export default function TxtInput({label, data, isOpen, onToggle, selected, onSel
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 40,
+        marginTop: 30,
         alignSelf: 'center',
     },
     text: {

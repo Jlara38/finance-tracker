@@ -11,8 +11,10 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 export default function TransactionModal  ({modalVisible, setModalVisible}){
   const [openDropdown, setOpenDropdown] = useState(null); // Stores the name of the open dropdown
   const [selectedType, setSelectedType] = useState(null); // Tracks selected value from the dropdown
+  const [selectedCat, setSelectedCat] = useState(null);
 
-  const types = [{value: 'Credit'}, {value: 'Debit'}, {value: 'Cash'}];
+  const types = [{value: 'Income'}, {value: 'Expense'}];
+  const category = [ {value: 'Clothing'}, {value: 'Entertainment'}, {value: 'Food'}, {value: 'Medical'}, {value: 'Personal'},  {value: 'Transportation'}, {value: 'Utilities'}]
 
   return(
     <Modal
@@ -34,6 +36,8 @@ export default function TransactionModal  ({modalVisible, setModalVisible}){
                     <AntDesign name="close" size={24} color="black" />
                 </TouchableOpacity>
 
+                {/* OptBtn is designed with the intent in mind to serve as a drop down menu for the sake of allowing the user to pick 
+                    an option that best suits the type of transaction that is being registered.*/}
                 <OptBtn 
                     label='Type' 
                     data={types} 
@@ -42,6 +46,20 @@ export default function TransactionModal  ({modalVisible, setModalVisible}){
                     selected = {selectedType} // [Passes down the selected value down]
                     onSelect={(val) => {
                         setSelectedType(val) // saves the selected option
+                        setOpenDropdown(null) // closes the dropdown
+                    }}    
+                />
+
+                {/* This OptBtn is designed with the intent in mind to serve as a drop down menu for the sake of allowing the user to pick 
+                    a category that best suits the transaction that is being registered.*/}
+                <OptBtn 
+                    label='Expense Category' 
+                    data={category} 
+                    isOpen={openDropdown === 'cat'}
+                    onToggle={() => setOpenDropdown(openDropdown === 'cat' ? null : 'cat')}
+                    selected = {selectedCat} // [Passes down the selected value down]
+                    onSelect={(val) => {
+                        setSelectedCat(val) // saves the selected option
                         setOpenDropdown(null) // closes the dropdown
                     }}    
                 />
